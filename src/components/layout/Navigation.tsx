@@ -1,15 +1,18 @@
 import { Home, Search, MapPin, MessageCircle, Calendar, User } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 const Navigation = () => {
+  const { t } = useTranslation();
+  
   const navItems = [
-    { icon: Home, label: "Accueil", path: "/" },
-    { icon: Search, label: "Recherche", path: "/search" },
-    { icon: MapPin, label: "Pharmacies", path: "/pharmacies" },
-    { icon: MessageCircle, label: "Chat", path: "/telemedecine" },
-    { icon: Calendar, label: "Suivi", path: "/tracking" },
-    { icon: User, label: "Profil", path: "/profile" },
+    { icon: Home, label: t("nav.home"), path: "/home" },
+    { icon: Search, label: t("nav.search"), path: "/search" },
+    { icon: MapPin, label: t("nav.pharmacies"), path: "/pharmacies" },
+    { icon: MessageCircle, label: t("nav.telemedecine"), path: "/telemedecine" },
+    { icon: Calendar, label: t("nav.tracking"), path: "/tracking" },
+    { icon: User, label: t("nav.profile"), path: "/profile" },
   ];
 
   return (

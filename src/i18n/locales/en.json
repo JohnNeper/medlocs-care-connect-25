@@ -12,15 +12,19 @@
     "yes": "Yes",
     "no": "No",
     "back": "Back",
-    "next": "Next"
+    "next": "Next",
+    "pageNotFound": "Page Not Found",
+    "pageNotFoundDesc": "The page you are looking for does not exist.",
+    "placeholder": "Search for medication or pharmacy..."
   },
   "nav": {
     "home": "Home",
     "search": "Search",
     "pharmacies": "Pharmacies", 
-    "chat": "Chat",
+    "telemedecine": "Telemedicine",
     "tracking": "Tracking",
-    "profile": "Profile"
+    "profile": "Profile",
+    "backHome": "Back to Home"
   },
   "auth": {
     "login": "Login",
