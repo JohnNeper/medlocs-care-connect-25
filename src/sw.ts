@@ -90,17 +90,7 @@ sw.addEventListener('push', (event) => {
     body: data.body || 'Nouvelle notification MedLocs',
     icon: '/icon-192x192.png',
     badge: '/icon-192x192.png',
-    data: data.url || '/',
-    actions: [
-      {
-        action: 'open',
-        title: 'Ouvrir'
-      },
-      {
-        action: 'close', 
-        title: 'Fermer'
-      }
-    ]
+    data: data.url || '/'
   };
 
   event.waitUntil(
