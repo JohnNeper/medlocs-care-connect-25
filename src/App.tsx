@@ -10,6 +10,11 @@ import Pharmacies from "./pages/Pharmacies";
 import Telemedecine from "./pages/Telemedecine";
 import Tracking from "./pages/Tracking";
 import Profile from "./pages/Profile";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import MedicationDetail from "./pages/MedicationDetail";
+import PharmacyDetail from "./pages/PharmacyDetail";
+import Reservation from "./pages/Reservation";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,15 +26,19 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="search" element={<Search />} />
             <Route path="pharmacies" element={<Pharmacies />} />
+            <Route path="pharmacy/:id" element={<PharmacyDetail />} />
+            <Route path="medication/:id" element={<MedicationDetail />} />
+            <Route path="reservation/:id" element={<Reservation />} />
             <Route path="telemedecine" element={<Telemedecine />} />
             <Route path="tracking" element={<Tracking />} />
             <Route path="profile" element={<Profile />} />
           </Route>
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
