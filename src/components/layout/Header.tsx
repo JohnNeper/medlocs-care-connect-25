@@ -1,10 +1,12 @@
-import { Search, Bell, User, Menu } from "lucide-react";
+import { Search, Bell, User, Menu, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
+import { useCart } from "@/contexts/CartContext";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const Header = () => {
@@ -12,6 +14,9 @@ const Header = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
+  const { getTotalItems } = useCart();
+
+  const totalItems = getTotalItems();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -67,6 +72,16 @@ const Header = () => {
               <Button variant="ghost" size="icon" className="relative">
                 <Bell className="h-5 w-5" />
                 <span className="absolute -top-1 -right-1 h-3 w-3 bg-destructive rounded-full text-xs"></span>
+              </Button>
+
+              {/* Cart */}
+              <Button variant="ghost" size="icon" className="relative">
+                <ShoppingCart className="h-5 w-5" />
+                {totalItems > 0 && (
+                  <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs bg-destructive">
+                    {totalItems}
+                  </Badge>
+                )}
               </Button>
 
               {/* Profile */}

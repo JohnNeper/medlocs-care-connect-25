@@ -2,12 +2,14 @@ import { MapPin, TrendingUp, Search, Filter } from "lucide-react";
 import { MedicalButton } from "@/components/ui/medical-button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { useNavigate } from "react-router-dom";
 import PharmacyCard from "@/components/pharmacy/PharmacyCard";
 import MedicationCard from "@/components/medication/MedicationCard";
 import PromotionalCarousel from "@/components/home/PromotionalCarousel";
 import heroImage from "@/assets/hero-medical.jpg";
 
 const Home = () => {
+  const navigate = useNavigate();
   const popularMedications = [
     {
       id: "1",
@@ -141,7 +143,7 @@ const Home = () => {
               <TrendingUp className="h-5 w-5 text-primary" />
               <h2 className="text-xl font-bold text-foreground">Médicaments populaires</h2>
             </div>
-            <MedicalButton variant="ghost" size="sm">
+            <MedicalButton variant="ghost" size="sm" onClick={() => navigate('/search')}>
               Voir tout
             </MedicalButton>
           </div>
@@ -165,7 +167,7 @@ const Home = () => {
                 <Filter className="h-4 w-4 mr-1" />
                 Filtres
               </MedicalButton>
-              <MedicalButton variant="ghost" size="sm">
+              <MedicalButton variant="ghost" size="sm" onClick={() => navigate('/pharmacies')}>
                 Voir tout
               </MedicalButton>
             </div>
@@ -180,12 +182,22 @@ const Home = () => {
 
         {/* Quick Actions */}
         <section className="grid grid-cols-2 gap-4">
-          <MedicalButton variant="primary" size="lg" className="h-16 flex-col">
+          <MedicalButton 
+            variant="primary" 
+            size="lg" 
+            className="h-16 flex-col"
+            onClick={() => navigate('/search')}
+          >
             <Search className="h-6 w-6 mb-1" />
             <span>Recherche avancée</span>
           </MedicalButton>
           
-          <MedicalButton variant="secondary" size="lg" className="h-16 flex-col">
+          <MedicalButton 
+            variant="secondary" 
+            size="lg" 
+            className="h-16 flex-col"
+            onClick={() => navigate('/pharmacies')}
+          >
             <MapPin className="h-6 w-6 mb-1" />
             <span>Pharmacies de garde</span>
           </MedicalButton>

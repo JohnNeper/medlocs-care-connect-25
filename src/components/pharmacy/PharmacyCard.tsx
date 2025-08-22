@@ -3,6 +3,8 @@ import { MedicalButton } from "@/components/ui/medical-button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "@/hooks/use-toast";
 import pharmacyIcon from "@/assets/pharmacy-icon.jpg";
 
 interface PharmacyCardProps {
@@ -19,6 +21,7 @@ interface PharmacyCardProps {
 }
 
 const PharmacyCard = ({
+  id,
   name,
   address,
   distance,
@@ -30,6 +33,23 @@ const PharmacyCard = ({
   promoText,
 }: PharmacyCardProps) => {
   const [isFavorite, setIsFavorite] = useState(false);
+  const navigate = useNavigate();
+
+  const handleCall = () => {
+    window.location.href = `tel:${phone}`;
+  };
+
+  const handleViewPharmacy = () => {
+    navigate(`/pharmacy/${id}`);
+  };
+
+  const toggleFavorite = () => {
+    setIsFavorite(!isFavorite);
+    toast({
+      title: isFavorite ? "Retiré des favoris" : "Ajouté aux favoris",
+      description: name
+    });
+  };
 
   return (
     <Card className="card-pharmacy relative overflow-hidden">
@@ -73,7 +93,7 @@ const PharmacyCard = ({
               <MedicalButton
                 variant="ghost"
                 size="icon"
-                onClick={() => setIsFavorite(!isFavorite)}
+                onClick={toggleFavorite}
                 className="h-8 w-8"
               >
                 <Heart 
@@ -94,11 +114,11 @@ const PharmacyCard = ({
               </div>
 
               <div className="flex space-x-2">
-                <MedicalButton variant="ghost" size="sm">
+                <MedicalButton variant="ghost" size="sm" onClick={handleCall}>
                   <Phone className="h-3 w-3 mr-1" />
                   Appeler
                 </MedicalButton>
-                <MedicalButton variant="primary" size="sm">
+                <MedicalButton variant="primary" size="sm" onClick={handleViewPharmacy}>
                   Voir
                 </MedicalButton>
               </div>

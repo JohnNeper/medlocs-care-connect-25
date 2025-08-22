@@ -2,6 +2,9 @@ import { Plus, TrendingUp, ShoppingCart } from "lucide-react";
 import { MedicalButton } from "@/components/ui/medical-button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import { toast } from "@/hooks/use-toast";
+import { useCart } from "@/contexts/CartContext";
+import { useNavigate } from "react-router-dom";
 import medicationsImage from "@/assets/medications.jpg";
 
 interface MedicationCardProps {
@@ -17,6 +20,7 @@ interface MedicationCardProps {
 }
 
 const MedicationCard = ({
+  id,
   name,
   type,
   description,
@@ -26,6 +30,31 @@ const MedicationCard = ({
   isAvailable = true,
   pharmacyCount,
 }: MedicationCardProps) => {
+  const { addItem } = useCart();
+  const navigate = useNavigate();
+
+  const handleAddToCart = () => {
+    addItem({
+      id,
+      name,
+      type,
+      price: minPrice,
+      pharmacyId: "1",
+      pharmacyName: "Pharmacie du Centre"
+    });
+    toast({
+      title: "Ajouté au panier",
+      description: `${name} a été ajouté à votre panier`
+    });
+  };
+
+  const handleBuyNow = () => {
+    navigate(`/medication/${id}`);
+  };
+
+  const handleViewDetail = () => {
+    navigate(`/medication/${id}`);
+  };
   return (
     <Card className="card-medical relative overflow-hidden">
       <CardContent className="p-4">
@@ -50,8 +79,8 @@ const MedicationCard = ({
           {/* Content */}
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between">
-              <div className="flex-1">
-                <h3 className="font-semibold text-foreground truncate">{name}</h3>
+              <div className="flex-1 cursor-pointer" onClick={handleViewDetail}>
+                <h3 className="font-semibold text-foreground truncate hover:text-primary transition-colors">{name}</h3>
                 <Badge variant="outline" className="mt-1 text-xs">
                   {type}
                 </Badge>
@@ -77,6 +106,7 @@ const MedicationCard = ({
                   variant="outline" 
                   size="sm"
                   disabled={!isAvailable}
+                  onClick={handleAddToCart}
                 >
                   <Plus className="h-3 w-3 mr-1" />
                   Ajouter
@@ -85,6 +115,7 @@ const MedicationCard = ({
                   variant="primary" 
                   size="sm"
                   disabled={!isAvailable}
+                  onClick={handleBuyNow}
                 >
                   <ShoppingCart className="h-3 w-3 mr-1" />
                   Acheter
