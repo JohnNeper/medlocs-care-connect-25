@@ -4,8 +4,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useState } from "react";
+import ChatWindow from "@/components/telemedicine/ChatWindow";
+import VideoCall from "@/components/telemedicine/VideoCall";
+import { toast } from "@/hooks/use-toast";
 
 const Telemedecine = () => {
+  const [activeChat, setActiveChat] = useState<string | null>(null);
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  
   const availablePharmacists = [
     {
       id: "1",
@@ -15,7 +22,7 @@ const Telemedecine = () => {
       reviews: 127,
       isOnline: true,
       nextAvailable: "Immédiatement",
-      photo: "",
+      photo: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=400&fit=crop&crop=face",
       consultationPrice: 15,
     },
     {
@@ -26,7 +33,7 @@ const Telemedecine = () => {
       reviews: 89,
       isOnline: true,
       nextAvailable: "Dans 5 min",
-      photo: "",
+      photo: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop&crop=face",
       consultationPrice: 18,
     },
     {
@@ -37,10 +44,38 @@ const Telemedecine = () => {
       reviews: 156,
       isOnline: false,
       nextAvailable: "14h30",
-      photo: "",
+      photo: "https://images.unsplash.com/photo-1594824694996-5ecc2b90806d?w=400&h=400&fit=crop&crop=face",
       consultationPrice: 20,
     },
   ];
+
+  const startChat = (pharmacistId: string, pharmacistName: string) => {
+    setActiveChat(pharmacistId);
+    toast({
+      title: "Chat démarré",
+      description: `Connexion avec ${pharmacistName}...`,
+    });
+  };
+
+  const startVideo = (pharmacistId: string, pharmacistName: string) => {
+    setActiveVideo(pharmacistId);
+    toast({
+      title: "Appel vidéo démarré",
+      description: `Connexion vidéo avec ${pharmacistName}...`,
+    });
+  };
+
+  const endChat = () => {
+    setActiveChat(null);
+  };
+
+  const endVideo = () => {
+    setActiveVideo(null);
+  };
+
+  const getActivePharmacist = (id: string | null) => {
+    return availablePharmacists.find(p => p.id === id);
+  };
 
   const consultationHistory = [
     {
@@ -188,6 +223,7 @@ const Telemedecine = () => {
                             variant="outline" 
                             size="sm"
                             disabled={!pharmacist.isOnline}
+                            onClick={() => startChat(pharmacist.id, pharmacist.name)}
                           >
                             <MessageCircle className="h-4 w-4 mr-1" />
                             Chat
@@ -196,6 +232,7 @@ const Telemedecine = () => {
                             variant="primary" 
                             size="sm"
                             disabled={!pharmacist.isOnline}
+                            onClick={() => startVideo(pharmacist.id, pharmacist.name)}
                           >
                             <Video className="h-4 w-4 mr-1" />
                             Vidéo
@@ -258,6 +295,26 @@ const Telemedecine = () => {
         {/* Bottom Padding for Navigation */}
         <div className="h-20" />
       </div>
+
+      {/* Chat Window */}
+      {activeChat && (
+        <ChatWindow
+          pharmacistName={getActivePharmacist(activeChat)?.name || ""}
+          pharmacistAvatar={getActivePharmacist(activeChat)?.photo}
+          isActive={!!activeChat}
+          onClose={endChat}
+        />
+      )}
+
+      {/* Video Call */}
+      {activeVideo && (
+        <VideoCall
+          pharmacistName={getActivePharmacist(activeVideo)?.name || ""}
+          pharmacistAvatar={getActivePharmacist(activeVideo)?.photo}
+          isActive={!!activeVideo}
+          onEnd={endVideo}
+        />
+      )}
     </div>
   );
 };

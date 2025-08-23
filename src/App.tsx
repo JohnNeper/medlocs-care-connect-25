@@ -42,6 +42,7 @@ const App = () => (
               <Route path="reservation/:id" element={<Reservation />} />
               <Route path="telemedecine" element={<Telemedecine />} />
               <Route path="tracking" element={<Tracking />} />
+              <Route path="map" element={<MapSearch />} />
               <Route path="profile" element={<Profile />} />
             </Route>
             <Route path="*" element={<NotFound />} />

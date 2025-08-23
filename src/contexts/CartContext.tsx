@@ -37,10 +37,29 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       }
       return [...prevItems, { ...newItem, quantity: 1 }];
     });
+    
+    // Show notification
+    import('@/hooks/use-toast').then(({ toast }) => {
+      toast({
+        title: "Produit ajouté au panier",
+        description: `${newItem.name} a été ajouté à votre panier`,
+      });
+    });
   };
 
   const removeItem = (id: string) => {
+    const itemToRemove = items.find(item => item.id === id);
     setItems(prevItems => prevItems.filter(item => item.id !== id));
+    
+    // Show notification
+    if (itemToRemove) {
+      import('@/hooks/use-toast').then(({ toast }) => {
+        toast({
+          title: "Produit retiré du panier",
+          description: `${itemToRemove.name} a été retiré de votre panier`,
+        });
+      });
+    }
   };
 
   const updateQuantity = (id: string, quantity: number) => {
@@ -57,6 +76,14 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const clearCart = () => {
     setItems([]);
+    
+    // Show notification
+    import('@/hooks/use-toast').then(({ toast }) => {
+      toast({
+        title: "Panier vidé",
+        description: "Tous les produits ont été retirés de votre panier",
+      });
+    });
   };
 
   const getTotalItems = () => {

@@ -4,8 +4,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useState } from "react";
+import MedicationReminder from "@/components/tracking/MedicationReminder";
+import AddTreatmentModal from "@/components/tracking/AddTreatmentModal";
 
 const Tracking = () => {
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [treatments, setTreatments] = useState([
+    // ... keep existing code (treatment data)
+  ]);
   const currentTreatments = [
     {
       id: "1",
@@ -73,7 +80,7 @@ const Tracking = () => {
             <h1 className="text-2xl font-bold text-foreground">Suivi des traitements</h1>
             <p className="text-muted-foreground">Gérez vos médicaments et rappels</p>
           </div>
-          <MedicalButton variant="primary" size="icon">
+          <MedicalButton variant="primary" size="icon" onClick={() => setShowAddModal(true)}>
             <Plus className="h-5 w-5" />
           </MedicalButton>
         </div>
@@ -274,6 +281,16 @@ const Tracking = () => {
         {/* Bottom Padding for Navigation */}
         <div className="h-20" />
       </div>
+
+      {/* Add Treatment Modal */}
+      <AddTreatmentModal
+        isOpen={showAddModal}
+        onClose={() => setShowAddModal(false)}
+        onAdd={(treatment) => {
+          // Add treatment logic here
+          console.log('New treatment:', treatment);
+        }}
+      />
     </div>
   );
 };
