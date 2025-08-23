@@ -1,9 +1,6 @@
 import { createRoot } from 'react-dom/client'
 import { StrictMode } from 'react'
-import { BrowserRouter } from 'react-router-dom'
 import App from './App.tsx'
-import { AuthProvider } from './contexts/AuthContext'
-import { CartProvider } from './contexts/CartContext'
 import './index.css'
 import './i18n'
 
@@ -22,12 +19,6 @@ if ('serviceWorker' in navigator) {
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter>
-      <AuthProvider>
-        <CartProvider>
-          <App />
-        </CartProvider>
-      </AuthProvider>
-    </BrowserRouter>
+    <App />
   </StrictMode>
 );
