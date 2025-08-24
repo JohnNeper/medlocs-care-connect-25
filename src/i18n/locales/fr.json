@@ -27,10 +27,10 @@
     "backHome": "Retour à l'accueil"
   },
   "auth": {
-    "login": "Se connecter",
-    "register": "S'inscrire",
-    "logout": "Se déconnecter",
-    "email": "Email",
+    "login": "Connexion",
+    "register": "Inscription",
+    "logout": "Déconnexion",
+    "email": "Adresse e-mail",
     "password": "Mot de passe",
     "confirmPassword": "Confirmer le mot de passe",
     "firstName": "Prénom",
@@ -39,9 +39,60 @@
     "dateOfBirth": "Date de naissance",
     "forgotPassword": "Mot de passe oublié ?",
     "noAccount": "Pas de compte ? Inscrivez-vous",
-    "haveAccount": "Déjà un compte ? Connectez-vous",
+    "hasAccount": "Déjà un compte ? Connectez-vous",
     "loginSuccess": "Connexion réussie",
-    "registerSuccess": "Inscription réussie"
+    "registerSuccess": "Inscription réussie",
+    "orContinueWith": "Ou continuer avec",
+    "welcomeBack": "Bienvenue !",
+    "welcomeDescription": "Accédez à votre espace personnel pour gérer vos consultations médicales et prescriptions."
+  },
+  "pricing": {
+    "title": "Choisissez votre abonnement",
+    "subtitle": "Accédez aux meilleurs services de télémédecine avec nos plans flexibles",
+    "month": "mois",
+    "popular": "Populaire",
+    "basic": "Basique",
+    "premium": "Premium",
+    "enterprise": "Entreprise",
+    "basicFeatures": {
+      "1": "Consultation vidéo mensuelle",
+      "2": "Recherche de pharmacies",
+      "3": "Rappels de médicaments",
+      "4": "Support par email"
+    },
+    "premiumFeatures": {
+      "1": "Consultations vidéo illimitées",
+      "2": "Chat en temps réel",
+      "3": "Prescription électronique",
+      "4": "Historique médical complet",
+      "5": "Support prioritaire"
+    },
+    "enterpriseFeatures": {
+      "1": "Toutes les fonctionnalités Premium",
+      "2": "Consultations familiales",
+      "3": "Médecins spécialisés",
+      "4": "Rapports de santé détaillés",
+      "5": "Intégration API",
+      "6": "Support téléphonique 24/7"
+    },
+    "selectPlan": "Choisir ce plan",
+    "description": "Tous les plans incluent un essai gratuit de 7 jours. Annulez à tout moment."
+  },
+  "subscription": {
+    "title": "Finaliser votre abonnement",
+    "subtitle": "Vous êtes à une étape de profiter de nos services premium",
+    "summary": "Résumé de la commande",
+    "total": "Total",
+    "subscribe": "S'abonner maintenant",
+    "loginAndSubscribe": "Se connecter et s'abonner",
+    "loginRequired": "Connexion requise",
+    "loginRequiredDesc": "Vous devez être connecté pour vous abonner",
+    "loginInfo": "Vous devez être connecté pour procéder au paiement. Vous serez redirigé vers la page de connexion.",
+    "success": "Abonnement activé !",
+    "successDesc": "Votre abonnement a été activé avec succès",
+    "errorDesc": "Une erreur est survenue lors de l'activation de votre abonnement",
+    "terms": "En vous abonnant, vous acceptez nos conditions d'utilisation et notre politique de confidentialité.",
+    "securePayment": "Paiement sécurisé"
   },
   "home": {
     "title": "Trouvez vos médicaments près de chez vous",

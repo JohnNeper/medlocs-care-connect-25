@@ -21,6 +21,8 @@ import Reservation from "./pages/Reservation";
 import NotFound from "./pages/NotFound";
 import Index from "./pages/Index";
 import MapSearch from "./pages/MapSearch";
+import Pricing from "./pages/Pricing";
+import Subscription from "./pages/Subscription";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +36,8 @@ const App = () => (
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/subscription" element={<Subscription />} />
             <Route path="/" element={<Layout />}>
               <Route index element={<Index />} />
               <Route path="home" element={<Home />} />
@@ -42,9 +46,9 @@ const App = () => (
               <Route path="pharmacy/:id" element={<PharmacyDetail />} />
               <Route path="medication/:id" element={<MedicationDetail />} />
               <Route path="reservation/:id" element={<Reservation />} />
-              <Route path="telemedecine" element={<Telemedecine />} />
+              <Route path="telemedicine" element={<Telemedecine />} />
               <Route path="tracking" element={<Tracking />} />
-              <Route path="map" element={<MapSearch />} />
+              <Route path="map-search" element={<MapSearch />} />
               <Route path="profile" element={<Profile />} />
             </Route>
             <Route path="*" element={<NotFound />} />
