@@ -19,6 +19,7 @@ import PharmacyDetail from "./pages/PharmacyDetail";
 import Reservation from "./pages/Reservation";
 import NotFound from "./pages/NotFound";
 import Index from "./pages/Index";
+import MapSearch from "./pages/MapSearch";
 
 const queryClient = new QueryClient();
 
