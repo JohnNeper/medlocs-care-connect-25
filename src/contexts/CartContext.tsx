@@ -8,9 +8,10 @@ interface CartItem {
   quantity: number;
   pharmacyId: string;
   pharmacyName: string;
+  dosage?: string;
 }
 
-interface CartContextType {
+export interface CartContextType {
   items: CartItem[];
   addItem: (item: Omit<CartItem, 'quantity'>) => void;
   removeItem: (id: string) => void;
@@ -18,6 +19,8 @@ interface CartContextType {
   clearCart: () => void;
   getTotalItems: () => number;
   getTotalPrice: () => number;
+  cartItems: CartItem[];
+  removeFromCart: (id: string) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -102,7 +105,9 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       updateQuantity,
       clearCart,
       getTotalItems,
-      getTotalPrice
+      getTotalPrice,
+      cartItems: items,
+      removeFromCart: removeItem
     }}>
       {children}
     </CartContext.Provider>

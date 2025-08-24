@@ -15,7 +15,8 @@
     "next": "Suivant",
     "pageNotFound": "Page non trouvée",
     "pageNotFoundDesc": "La page que vous cherchez n'existe pas.",
-    "placeholder": "Rechercher un médicament ou une pharmacie..."
+    "placeholder": "Rechercher un médicament ou une pharmacie...",
+    "notifications": "Notifications"
   },
   "nav": {
     "home": "Accueil",
@@ -24,7 +25,9 @@
     "telemedecine": "Télémédecine",
     "tracking": "Suivi",
     "profile": "Profil",
-    "backHome": "Retour à l'accueil"
+    "backHome": "Retour à l'accueil",
+    "pricing": "Abonnement",
+    "map": "Carte"
   },
   "auth": {
     "login": "Connexion",
@@ -93,6 +96,34 @@
     "errorDesc": "Une erreur est survenue lors de l'activation de votre abonnement",
     "terms": "En vous abonnant, vous acceptez nos conditions d'utilisation et notre politique de confidentialité.",
     "securePayment": "Paiement sécurisé"
+  },
+  "cart": {
+    "title": "Mon panier",
+    "empty": "Votre panier est vide",
+    "emptyDesc": "Ajoutez des médicaments à votre panier pour commencer vos achats",
+    "emptyCart": "Panier vide",
+    "emptyCartDesc": "Ajoutez des produits avant de passer commande",
+    "startShopping": "Commencer mes achats",
+    "orderSummary": "Résumé de la commande",
+    "subtotal": "Sous-total",
+    "delivery": "Livraison",
+    "free": "Gratuit",
+    "total": "Total",
+    "checkout": "Passer commande",
+    "clearCart": "Vider le panier",
+    "orderPlaced": "Commande passée !",
+    "orderPlacedDesc": "Votre commande a été enregistrée avec succès"
+  },
+  "map": {
+    "searchPlaceholder": "Rechercher sur la carte...",
+    "searchResults": "Résultats de recherche",
+    "apiKeyRequired": "Clé API Google Maps requise",
+    "apiKeyDescription": "Pour utiliser la carte, veuillez entrer votre clé API Google Maps.",
+    "enterApiKey": "Entrez votre clé API Google Maps",
+    "loadMap": "Charger la carte",
+    "getApiKey": "Obtenir une clé API",
+    "locationError": "Erreur de géolocalisation",
+    "locationErrorDesc": "Impossible d'obtenir votre position"
   },
   "home": {
     "title": "Trouvez vos médicaments près de chez vous",

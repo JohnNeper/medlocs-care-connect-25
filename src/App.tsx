@@ -23,6 +23,7 @@ import Index from "./pages/Index";
 import MapSearch from "./pages/MapSearch";
 import Pricing from "./pages/Pricing";
 import Subscription from "./pages/Subscription";
+import Cart from "./pages/Cart";
 
 const queryClient = new QueryClient();
 
@@ -50,6 +51,7 @@ const App = () => (
               <Route path="tracking" element={<Tracking />} />
               <Route path="map-search" element={<MapSearch />} />
               <Route path="profile" element={<Profile />} />
+              <Route path="cart" element={<Cart />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

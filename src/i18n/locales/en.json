@@ -15,7 +15,8 @@
     "next": "Next",
     "pageNotFound": "Page Not Found",
     "pageNotFoundDesc": "The page you are looking for does not exist.",
-    "placeholder": "Search for medication or pharmacy..."
+    "placeholder": "Search for medication or pharmacy...",
+    "notifications": "Notifications"
   },
   "nav": {
     "home": "Home",
@@ -24,7 +25,9 @@
     "telemedecine": "Telemedicine",
     "tracking": "Tracking",
     "profile": "Profile",
-    "backHome": "Back to Home"
+    "backHome": "Back to Home",
+    "pricing": "Pricing",
+    "map": "Map"
   },
   "auth": {
     "login": "Login",
@@ -93,6 +96,34 @@
     "errorDesc": "An error occurred while activating your subscription",
     "terms": "By subscribing, you agree to our terms of service and privacy policy.",
     "securePayment": "Secure payment"
+  },
+  "cart": {
+    "title": "My cart",
+    "empty": "Your cart is empty",
+    "emptyDesc": "Add medications to your cart to start shopping",
+    "emptyCart": "Empty cart",
+    "emptyCartDesc": "Add products before placing an order",
+    "startShopping": "Start shopping",
+    "orderSummary": "Order summary",
+    "subtotal": "Subtotal",
+    "delivery": "Delivery",
+    "free": "Free",
+    "total": "Total",
+    "checkout": "Checkout",
+    "clearCart": "Clear cart",
+    "orderPlaced": "Order placed!",
+    "orderPlacedDesc": "Your order has been successfully recorded"
+  },
+  "map": {
+    "searchPlaceholder": "Search on map...",
+    "searchResults": "Search results",
+    "apiKeyRequired": "Google Maps API key required",
+    "apiKeyDescription": "To use the map, please enter your Google Maps API key.",
+    "enterApiKey": "Enter your Google Maps API key",
+    "loadMap": "Load map",
+    "getApiKey": "Get API key",
+    "locationError": "Geolocation error",
+    "locationErrorDesc": "Unable to get your location"
   },
   "home": {
     "title": "Find your medications nearby",

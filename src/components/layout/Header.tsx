@@ -7,7 +7,9 @@ import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { useCart } from "@/contexts/CartContext";
+import { toast } from "@/hooks/use-toast";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import medlocsLogo from "@/assets/medlocs-logo.png";
 
 const Header = () => {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
@@ -28,8 +30,8 @@ const Header = () => {
 
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-2 mr-6 hover:opacity-80 transition-opacity">
-          <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-lg">M</span>
+          <div className="w-8 h-8">
+            <img src={medlocsLogo} alt="MedLocs" className="w-full h-full object-contain" />
           </div>
           <span className="font-bold text-xl text-gradient-primary hidden sm:block">
             MedLocs
@@ -56,6 +58,22 @@ const Header = () => {
           </div>
         </div>
 
+        <div className="hidden lg:flex items-center space-x-2 mr-4">
+          <Link to="/pricing">
+            <Button variant="ghost" size="sm" className="relative">
+              {t('nav.pricing')}
+              <Badge className="absolute -top-1 -right-1 text-xs px-1 py-0 h-4 bg-green-500">
+                New
+              </Badge>
+            </Button>
+          </Link>
+          <Link to="/map-search">
+            <Button variant="ghost" size="sm">
+              {t('nav.map')}
+            </Button>
+          </Link>
+        </div>
+
         {/* Right Actions */}
         <div className="flex items-center space-x-2 ml-auto">
           {/* Language Switcher */}
@@ -69,13 +87,28 @@ const Header = () => {
           {user ? (
             <>
               {/* Notifications */}
-              <Button variant="ghost" size="icon" className="relative">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="relative"
+                onClick={() => {
+                  toast({
+                    title: t('common.notifications'),
+                    description: "Vous n'avez pas de nouvelles notifications"
+                  });
+                }}
+              >
                 <Bell className="h-5 w-5" />
                 <span className="absolute -top-1 -right-1 h-3 w-3 bg-destructive rounded-full text-xs"></span>
               </Button>
 
               {/* Cart */}
-              <Button variant="ghost" size="icon" className="relative">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="relative"
+                onClick={() => navigate('/cart')}
+              >
                 <ShoppingCart className="h-5 w-5" />
                 {totalItems > 0 && (
                   <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs bg-destructive">
