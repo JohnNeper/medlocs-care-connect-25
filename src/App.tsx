@@ -24,6 +24,7 @@ import MapSearch from "./pages/MapSearch";
 import Pricing from "./pages/Pricing";
 import Subscription from "./pages/Subscription";
 import Cart from "./pages/Cart";
+import Notifications from "./pages/Notifications";
 
 const queryClient = new QueryClient();
 
@@ -48,6 +49,7 @@ const App = () => (
               <Route path="medication/:id" element={<MedicationDetail />} />
               <Route path="reservation/:id" element={<Reservation />} />
               <Route path="telemedicine" element={<Telemedecine />} />
+              <Route path="notifications" element={<Notifications />} />
               <Route path="tracking" element={<Tracking />} />
               <Route path="map-search" element={<MapSearch />} />
               <Route path="profile" element={<Profile />} />

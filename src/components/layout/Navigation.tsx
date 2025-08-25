@@ -10,7 +10,7 @@ const Navigation = () => {
     { icon: Home, label: t("nav.home"), path: "/home" },
     { icon: Search, label: t("nav.search"), path: "/search" },
     { icon: MapPin, label: t("nav.pharmacies"), path: "/pharmacies" },
-    { icon: MessageCircle, label: t("nav.telemedecine"), path: "/telemedecine" },
+    { icon: MessageCircle, label: t("nav.telemedecine"), path: "/telemedicine" },
     { icon: Calendar, label: t("nav.tracking"), path: "/tracking" },
     { icon: User, label: t("nav.profile"), path: "/profile" },
   ];

@@ -81,6 +81,11 @@
     "selectPlan": "Select this plan",
     "description": "All plans include a 7-day free trial. Cancel anytime."
   },
+  "notifications": {
+    "title": "Notifications",
+    "subtitle": "Stay informed about your healthcare",
+    "markAllRead": "Mark all as read"
+  },
   "subscription": {
     "title": "Complete your subscription",
     "subtitle": "You're one step away from enjoying our premium services",

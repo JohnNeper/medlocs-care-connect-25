@@ -81,7 +81,11 @@
     "selectPlan": "Choisir ce plan",
     "description": "Tous les plans incluent un essai gratuit de 7 jours. Annulez à tout moment."
   },
-  "subscription": {
+  "notifications": {
+    "title": "Notifications",
+    "subtitle": "Restez informé de vos soins de santé",
+    "markAllRead": "Tout marquer lu"
+  },
     "title": "Finaliser votre abonnement",
     "subtitle": "Vous êtes à une étape de profiter de nos services premium",
     "summary": "Résumé de la commande",
