@@ -13,8 +13,8 @@ i18n
       en: { translation: en },
       fr: { translation: fr },
     },
-    lng: 'fr', // default language
-    fallbackLng: 'fr',
+    lng: 'en', // default language
+    fallbackLng: 'en',
     interpolation: {
       escapeValue: false,
     },

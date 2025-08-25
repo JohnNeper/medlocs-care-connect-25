@@ -1,4 +1,5 @@
 import { Video, MessageCircle, Phone, Clock, Star, Users, CheckCircle } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { MedicalButton } from "@/components/ui/medical-button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -10,6 +11,7 @@ import VideoCall from "@/components/telemedicine/VideoCall";
 import { toast } from "@/hooks/use-toast";
 
 const Telemedecine = () => {
+  const { t } = useTranslation();
   const [activeChat, setActiveChat] = useState<string | null>(null);
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
   
@@ -17,33 +19,33 @@ const Telemedecine = () => {
     {
       id: "1",
       name: "Dr. Sophie Martin",
-      specialty: "Pharmacien titulaire",
+      specialty: "Licensed Pharmacist",
       rating: 4.9,
       reviews: 127,
       isOnline: true,
-      nextAvailable: "Immédiatement",
+      nextAvailable: "Immediately",
       photo: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=400&fit=crop&crop=face",
       consultationPrice: 15,
     },
     {
       id: "2",
-      name: "Dr. Pierre Dubois",
-      specialty: "Pharmacien spécialisé",
+      name: "Dr. Peter Johnson",
+      specialty: "Specialized Pharmacist",
       rating: 4.8,
       reviews: 89,
       isOnline: true,
-      nextAvailable: "Dans 5 min",
+      nextAvailable: "In 5 min",
       photo: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop&crop=face",
       consultationPrice: 18,
     },
     {
       id: "3",
-      name: "Dr. Marie Leroy",
-      specialty: "Pharmacien conseil",
+      name: "Dr. Mary Wilson",
+      specialty: "Consulting Pharmacist",
       rating: 4.7,
       reviews: 156,
       isOnline: false,
-      nextAvailable: "14h30",
+      nextAvailable: "2:30 PM",
       photo: "https://images.unsplash.com/photo-1594824694996-5ecc2b90806d?w=400&h=400&fit=crop&crop=face",
       consultationPrice: 20,
     },
@@ -52,16 +54,16 @@ const Telemedecine = () => {
   const startChat = (pharmacistId: string, pharmacistName: string) => {
     setActiveChat(pharmacistId);
     toast({
-      title: "Chat démarré",
-      description: `Connexion avec ${pharmacistName}...`,
+      title: t('teleconsultation.chatStarted'),
+      description: `${t('teleconsultation.connectingWith')} ${pharmacistName}...`,
     });
   };
 
   const startVideo = (pharmacistId: string, pharmacistName: string) => {
     setActiveVideo(pharmacistId);
     toast({
-      title: "Appel vidéo démarré",
-      description: `Connexion vidéo avec ${pharmacistName}...`,
+      title: t('teleconsultation.videoStarted'),
+      description: `${t('teleconsultation.videoConnecting')} ${pharmacistName}...`,
     });
   };
 
@@ -85,16 +87,16 @@ const Telemedecine = () => {
       type: "chat",
       duration: "15 min",
       status: "completed",
-      reason: "Conseils sur antalgiques",
+      reason: "Pain reliever advice",
     },
     {
       id: "2",
-      pharmacist: "Dr. Pierre Dubois",
+      pharmacist: "Dr. Peter Johnson",
       date: "2024-01-10",
       type: "video",
       duration: "25 min",
       status: "completed",
-      reason: "Questions sur ordonnance",
+      reason: "Prescription questions",
     },
   ];
 
@@ -102,25 +104,25 @@ const Telemedecine = () => {
     {
       type: "chat",
       icon: MessageCircle,
-      title: "Chat écrit",
-      description: "Échangez par messages instantanés",
-      price: "À partir de 10€",
+      titleKey: "teleconsultation.chatTitle",
+      descriptionKey: "teleconsultation.chatDesc",
+      price: "From £10",
       duration: "15-30 min",
     },
     {
       type: "audio",
       icon: Phone,
-      title: "Consultation audio",
-      description: "Appelez directement le pharmacien",
-      price: "À partir de 15€",
+      titleKey: "teleconsultation.audioTitle",
+      descriptionKey: "teleconsultation.audioDesc",
+      price: "From £15",
       duration: "15-20 min",
     },
     {
       type: "video",
       icon: Video,
-      title: "Consultation vidéo",
-      description: "Montrez vos symptômes en direct",
-      price: "À partir de 20€",
+      titleKey: "teleconsultation.videoTitle",
+      descriptionKey: "teleconsultation.videoDesc",
+      price: "From £20",
       duration: "20-30 min",
     },
   ];
@@ -130,9 +132,9 @@ const Telemedecine = () => {
       <div className="container mx-auto px-4 space-y-6">
         {/* Header */}
         <div className="space-y-2">
-          <h1 className="text-2xl font-bold text-foreground">Télépharmacie</h1>
+          <h1 className="text-2xl font-bold text-foreground">{t('teleconsultation.title')}</h1>
           <p className="text-muted-foreground">
-            Consultez un pharmacien depuis chez vous
+            {t('teleconsultation.subtitle')}
           </p>
         </div>
 
@@ -144,7 +146,7 @@ const Telemedecine = () => {
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
                   <type.icon className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="font-semibold text-sm text-foreground mb-1">{type.title}</h3>
+                <h3 className="font-semibold text-sm text-foreground mb-1">{t(type.titleKey)}</h3>
                 <p className="text-xs text-muted-foreground">{type.price}</p>
               </CardContent>
             </Card>
@@ -159,11 +161,11 @@ const Telemedecine = () => {
                 <Phone className="h-5 w-5 text-destructive" />
               </div>
               <div className="flex-1">
-                <h3 className="font-semibold text-foreground">Urgence médicale ?</h3>
-                <p className="text-sm text-muted-foreground">Composez le 15 (SAMU) ou le 112</p>
+                <h3 className="font-semibold text-foreground">{t('teleconsultation.emergency')}</h3>
+                <p className="text-sm text-muted-foreground">{t('teleconsultation.emergencyDesc')}</p>
               </div>
               <MedicalButton variant="outline" size="sm" className="border-destructive text-destructive">
-                Appeler
+                {t('teleconsultation.call')}
               </MedicalButton>
             </div>
           </CardContent>
@@ -172,8 +174,8 @@ const Telemedecine = () => {
         {/* Main Content Tabs */}
         <Tabs defaultValue="pharmacists" className="w-full">
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="pharmacists">Pharmaciens disponibles</TabsTrigger>
-            <TabsTrigger value="history">Mes consultations</TabsTrigger>
+            <TabsTrigger value="pharmacists">{t('teleconsultation.availablePharmacists')}</TabsTrigger>
+            <TabsTrigger value="history">{t('teleconsultation.myConsultations')}</TabsTrigger>
           </TabsList>
 
           <TabsContent value="pharmacists" className="space-y-4 mt-6">
@@ -195,7 +197,7 @@ const Telemedecine = () => {
                             <h3 className="font-semibold text-foreground">{pharmacist.name}</h3>
                             {pharmacist.isOnline && (
                               <Badge className="bg-success text-success-foreground text-xs">
-                                En ligne
+                                {t('teleconsultation.online')}
                               </Badge>
                             )}
                           </div>
@@ -216,7 +218,7 @@ const Telemedecine = () => {
 
                       <div className="flex items-center justify-between mt-4">
                         <span className="text-lg font-bold text-primary">
-                          À partir de {pharmacist.consultationPrice}€
+                          {t('teleconsultation.priceFrom')} £{pharmacist.consultationPrice}
                         </span>
                         <div className="flex space-x-2">
                           <MedicalButton 
@@ -235,7 +237,7 @@ const Telemedecine = () => {
                             onClick={() => startVideo(pharmacist.id, pharmacist.name)}
                           >
                             <Video className="h-4 w-4 mr-1" />
-                            Vidéo
+                            Video
                           </MedicalButton>
                         </div>
                       </div>
@@ -251,12 +253,12 @@ const Telemedecine = () => {
               <Card className="card-medical">
                 <CardContent className="p-8 text-center">
                   <Users className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                  <h3 className="font-semibold text-foreground mb-2">Aucune consultation</h3>
+                  <h3 className="font-semibold text-foreground mb-2">{t('teleconsultation.noConsultations')}</h3>
                   <p className="text-muted-foreground mb-4">
-                    Vous n'avez pas encore consulté de pharmacien
+                    {t('teleconsultation.noConsultationsDesc')}
                   </p>
                   <MedicalButton variant="primary">
-                    Commencer une consultation
+                    {t('teleconsultation.startConsultation')}
                   </MedicalButton>
                 </CardContent>
               </Card>
@@ -282,7 +284,7 @@ const Telemedecine = () => {
                       </div>
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="h-4 w-4 text-success" />
-                        <Badge className="bg-success text-success-foreground">Terminée</Badge>
+                        <Badge className="bg-success text-success-foreground">{t('teleconsultation.completed')}</Badge>
                       </div>
                     </div>
                   </CardContent>

@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Paperclip, Mic, MicOff, Phone, PhoneOff } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { MedicalButton } from '@/components/ui/medical-button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -28,11 +29,12 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
   isActive,
   onClose
 }) => {
+  const { t } = useTranslation();
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
       sender: 'pharmacist',
-      content: `Bonjour ! Je suis ${pharmacistName}. Comment puis-je vous aider aujourd'hui ?`,
+      content: `${t('teleconsultation.hello')} ${pharmacistName}${t('teleconsultation.howCanIHelp')}`,
       timestamp: new Date(),
       type: 'text'
     }
@@ -64,11 +66,11 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
     // Simulate pharmacist response
     setTimeout(() => {
       const responses = [
-        "Je comprends votre préoccupation. Pouvez-vous me donner plus de détails ?",
-        "C'est une excellente question. Laissez-moi vous expliquer...",
-        "Pour ce type de symptôme, je recommande généralement...",
-        "Avez-vous déjà pris ce médicament auparavant ?",
-        "Je vais vous donner quelques conseils personnalisés."
+        "I understand your concern. Can you provide me with more details?",
+        "That's an excellent question. Let me explain...",
+        "For this type of symptom, I generally recommend...",
+        "Have you taken this medication before?",
+        "I'll give you some personalized advice."
       ];
       
       const response: Message = {
@@ -83,7 +85,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
     }, 1000 + Math.random() * 2000);
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
@@ -94,8 +96,8 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
     setIsRecording(!isRecording);
     if (!isRecording) {
       toast({
-        title: "Enregistrement audio",
-        description: "Fonctionnalité bientôt disponible",
+        title: t('teleconsultation.audioRecording'),
+        description: t('teleconsultation.featureSoon'),
       });
     }
   };
@@ -105,7 +107,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
   };
 
   const formatTime = (date: Date) => {
-    return date.toLocaleTimeString('fr-FR', { 
+    return date.toLocaleTimeString('en-US', { 
       hour: '2-digit', 
       minute: '2-digit' 
     });
@@ -128,7 +130,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
             <h3 className="font-semibold">{pharmacistName}</h3>
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-success rounded-full animate-pulse" />
-              <span className="text-sm opacity-90">En ligne</span>
+              <span className="text-sm opacity-90">{t('teleconsultation.online')}</span>
             </div>
           </div>
         </div>
@@ -191,7 +193,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
       {!isConnected && (
         <div className="bg-warning/10 border-warning/20 border p-2 mx-4">
           <p className="text-sm text-warning text-center">
-            Reconnexion en cours...
+            {t('teleconsultation.reconnecting')}
           </p>
         </div>
       )}
@@ -221,8 +223,8 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
             <Input
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
-              onKeyPress={handleKeyPress}
-              placeholder="Tapez votre message..."
+              onKeyDown={handleKeyDown}
+              placeholder={t('teleconsultation.typeMessage')}
               className="resize-none"
             />
           </div>
@@ -247,8 +249,8 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
         onChange={(e) => {
           if (e.target.files?.[0]) {
             toast({
-              title: "Envoi de fichier",
-              description: "Fonctionnalité bientôt disponible",
+              title: t('teleconsultation.fileUpload'),
+              description: t('teleconsultation.featureSoon'),
             });
           }
         }}

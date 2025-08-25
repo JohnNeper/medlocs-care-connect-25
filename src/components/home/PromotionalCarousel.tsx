@@ -1,46 +1,48 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Percent, Zap, Gift } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { MedicalButton } from "@/components/ui/medical-button";
 import { Card, CardContent } from "@/components/ui/card";
 
 interface PromoSlide {
   id: string;
-  title: string;
-  description: string;
+  titleKey: string;
+  descriptionKey: string;
   discount?: string;
   bgColor: string;
   icon: React.ElementType;
-  ctaText: string;
+  ctaKey: string;
 }
 
 const PromotionalCarousel = () => {
+  const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides: PromoSlide[] = [
     {
       id: "1",
-      title: "Livraison Express",
-      description: "Recevez vos médicaments en moins de 2h",
+      titleKey: "home.carousel.expressDelivery",
+      descriptionKey: "home.carousel.expressDeliveryDesc",
       bgColor: "bg-gradient-primary",
       icon: Zap,
-      ctaText: "Commander maintenant",
+      ctaKey: "home.carousel.orderNow",
     },
     {
       id: "2",
-      title: "Réduction -20%",
-      description: "Sur votre première commande",
+      titleKey: "home.carousel.discount20",
+      descriptionKey: "home.carousel.discount20Desc",
       discount: "20%",
       bgColor: "bg-gradient-success",
       icon: Percent,
-      ctaText: "Profiter de l'offre",
+      ctaKey: "home.carousel.claimOffer",
     },
     {
       id: "3",
-      title: "Programme Fidélité",
-      description: "Gagnez des points à chaque achat",
+      titleKey: "home.carousel.loyaltyProgram",
+      descriptionKey: "home.carousel.loyaltyProgramDesc",
       bgColor: "bg-gradient-secondary",
       icon: Gift,
-      ctaText: "En savoir plus",
+      ctaKey: "home.carousel.learnMore",
     },
   ];
 
@@ -80,14 +82,14 @@ const PromotionalCarousel = () => {
                       <span className="text-2xl font-bold">-{slide.discount}</span>
                     )}
                   </div>
-                  <h3 className="text-xl font-bold mb-1">{slide.title}</h3>
-                  <p className="text-white/90 text-sm mb-4">{slide.description}</p>
+                  <h3 className="text-xl font-bold mb-1">{t(slide.titleKey)}</h3>
+                  <p className="text-white/90 text-sm mb-4">{t(slide.descriptionKey)}</p>
                   <MedicalButton 
                     variant="ghost" 
                     size="sm"
                     className="bg-white/20 hover:bg-white/30 text-white border-white/30"
                   >
-                    {slide.ctaText}
+                    {t(slide.ctaKey)}
                   </MedicalButton>
                 </div>
               </div>
